@@ -3,8 +3,7 @@
 #' @description
 #' Computes dyad-robust standard errors via multiway decomposition,
 #' proposed by Aronow, Peter M., Cyrus Samii, and Valentina A. Assenova.
-#' "Cluster-robust variance estimation for dyadic data." Political Analysis 23.4 (2015): 564-577
-#' (\code{\href{https://arxiv.org/pdf/1312.3398.pdf}{ARXIV}}).
+#' "Cluster-robust variance estimation for dyadic data." Political Analysis 23.4 (2015): 564-577.
 #'
 #' This package is based on \code{dyadRobust}.
 #'
