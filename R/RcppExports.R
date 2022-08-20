@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 sum_by_dyad_cluster <- function(sw, cluster_bool) {
-    .Call('_fixestDyadRobust_sum_by_dyad_cluster', PACKAGE = 'fixestDyadRobust', sw, cluster_bool)
+    .Call('_fastDyadRobust_sum_by_dyad_cluster', PACKAGE = 'fastDyadRobust', sw, cluster_bool)
 }
 
 create_meat <- function(sw, pair, id) {
-    .Call('_fixestDyadRobust_create_meat', PACKAGE = 'fixestDyadRobust', sw, pair, id)
+    .Call('_fastDyadRobust_create_meat', PACKAGE = 'fastDyadRobust', sw, pair, id)
 }
 
