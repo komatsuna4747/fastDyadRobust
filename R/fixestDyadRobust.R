@@ -1,4 +1,4 @@
-#' @useDynLib fixestDyadRobust
+#' @useDynLib fastDyadRobust
 #' @importFrom Rcpp sourceCpp
 #'
 #' @param fit The model object estimated by the \code{fixest} package.
