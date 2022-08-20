@@ -11,20 +11,35 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// test
-arma::mat test(arma::mat x);
-RcppExport SEXP _fixestDyadRobust_test(SEXP xSEXP) {
+// sum_by_dyad_cluster
+arma::mat sum_by_dyad_cluster(arma::mat& sw, arma::uvec& cluster_bool);
+RcppExport SEXP _fixestDyadRobust_sum_by_dyad_cluster(SEXP swSEXP, SEXP cluster_boolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(test(x));
+    Rcpp::traits::input_parameter< arma::mat& >::type sw(swSEXP);
+    Rcpp::traits::input_parameter< arma::uvec& >::type cluster_bool(cluster_boolSEXP);
+    rcpp_result_gen = Rcpp::wrap(sum_by_dyad_cluster(sw, cluster_bool));
+    return rcpp_result_gen;
+END_RCPP
+}
+// create_meat
+arma::mat create_meat(arma::mat& sw, arma::mat& pair, arma::vec& id);
+RcppExport SEXP _fixestDyadRobust_create_meat(SEXP swSEXP, SEXP pairSEXP, SEXP idSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat& >::type sw(swSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type pair(pairSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type id(idSEXP);
+    rcpp_result_gen = Rcpp::wrap(create_meat(sw, pair, id));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_fixestDyadRobust_test", (DL_FUNC) &_fixestDyadRobust_test, 1},
+    {"_fixestDyadRobust_sum_by_dyad_cluster", (DL_FUNC) &_fixestDyadRobust_sum_by_dyad_cluster, 2},
+    {"_fixestDyadRobust_create_meat", (DL_FUNC) &_fixestDyadRobust_create_meat, 3},
     {NULL, NULL, 0}
 };
 
