@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // sum_by_dyad_cluster
 arma::mat sum_by_dyad_cluster(arma::mat& sw, arma::uvec& cluster_bool);
-RcppExport SEXP _fixestDyadRobust_sum_by_dyad_cluster(SEXP swSEXP, SEXP cluster_boolSEXP) {
+RcppExport SEXP _fastDyadRobust_sum_by_dyad_cluster(SEXP swSEXP, SEXP cluster_boolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -25,7 +25,7 @@ END_RCPP
 }
 // create_meat
 arma::mat create_meat(arma::mat& sw, arma::mat& pair, arma::vec& id);
-RcppExport SEXP _fixestDyadRobust_create_meat(SEXP swSEXP, SEXP pairSEXP, SEXP idSEXP) {
+RcppExport SEXP _fastDyadRobust_create_meat(SEXP swSEXP, SEXP pairSEXP, SEXP idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -38,12 +38,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_fixestDyadRobust_sum_by_dyad_cluster", (DL_FUNC) &_fixestDyadRobust_sum_by_dyad_cluster, 2},
-    {"_fixestDyadRobust_create_meat", (DL_FUNC) &_fixestDyadRobust_create_meat, 3},
+    {"_fastDyadRobust_sum_by_dyad_cluster", (DL_FUNC) &_fastDyadRobust_sum_by_dyad_cluster, 2},
+    {"_fastDyadRobust_create_meat", (DL_FUNC) &_fastDyadRobust_create_meat, 3},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_fixestDyadRobust(DllInfo *dll) {
+RcppExport void R_init_fastDyadRobust(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

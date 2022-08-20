@@ -5,7 +5,7 @@
 #' @param dyad_cluster A data frame or matrix that specifies how to dyadically cluster the standard errors.
 #' The dimension of `dyad_cluster` must be D x 2,
 #' where D is the number of rows of the data frame that you have used to estimate `fit`.
-fixestDyadRobust <- function(fit, dyad_cluster) {
+fastDyadRobust <- function(fit, dyad_cluster) {
 
   # Check fit
   if (class(fit) != "fixest") {
