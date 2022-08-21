@@ -1,6 +1,5 @@
 # Create a test dataset
 make_test_data <- function(N = 20, repeated = FALSE, time_repeat = 3) {
-
   df_test <- expand.grid(1:N, 1:N)
   df_test <- df_test[df_test$Var1 < df_test$Var2, ]
 
@@ -8,7 +7,7 @@ make_test_data <- function(N = 20, repeated = FALSE, time_repeat = 3) {
     df_test <-
       rbind(df_test, df_test, df_test)
 
-    df_test$t <- rep(1:time_repeat, each = nrow(df_test)/time_repeat)
+    df_test$t <- rep(1:time_repeat, each = nrow(df_test) / time_repeat)
   }
 
   df_test$x <- rnorm(nrow(df_test))

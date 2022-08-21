@@ -25,4 +25,3 @@ for (is_repeated in c(FALSE, TRUE)) {
     expect_error(fastDyadRobust(reg_dyad, dyad_cluster[1:10, ]))
   })
 }
-

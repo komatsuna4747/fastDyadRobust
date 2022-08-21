@@ -45,7 +45,7 @@ fastDyadRobust <- function(fit, dyad_cluster) {
 
   # Compute dyad-robust standard errors via multiway decomposition
   dyad_robust_vcov <-
-    1/nrow(est_fun) * (bread %*% meat %*% bread) -
+    1 / nrow(est_fun) * (bread %*% meat %*% bread) -
     sandwich::vcovCL(fit, type = "HC0", cluster = dyad_id, cadjust = FALSE) -
     (length(list_data$id) - 2) * sandwich::vcovHC(fit, "HC0")
 
