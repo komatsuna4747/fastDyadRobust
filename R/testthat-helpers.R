@@ -10,8 +10,8 @@ make_test_data <- function(N = 20, repeated = FALSE, time_repeat = 3) {
     df_test$t <- rep(1:time_repeat, each = nrow(df_test) / time_repeat)
   }
 
-  df_test$x <- rnorm(nrow(df_test))
-  df_test$e <- rnorm(nrow(df_test))
+  df_test$x <- stats::rnorm(nrow(df_test))
+  df_test$e <- stats::rnorm(nrow(df_test))
   df_test$y <- df_test$x + df_test$e
 
   return(df_test)
@@ -30,7 +30,7 @@ dyad_meat_helper <- function(dyad.mat, iUp, sw) {
     stop("Dyad ID issue")
   }
 
-  uj_dt <- aggregate(sw, by = list(cluster = clusIndexUp), FUN = sum)
+  uj_dt <- stats::aggregate(sw, by = list(cluster = clusIndexUp), FUN = sum)
   uj <- as.matrix(uj_dt[, 2:ncol(uj_dt)])
   rownames(uj) <- uj_dt$cluster
   meat <- crossprod(uj) / length(clusIndexUp)
@@ -48,11 +48,11 @@ testDyadRobust <- function(fit, dat) {
   }
   if (class(fit) == "felm" & "cX" %in% names(fit)) {
     xmat <- fit$cX
-    xmat <- naresid(fit$na.action, xmat)
-    if (any(alias <- is.na(coef(fit)))) xmat <- xmat[, !alias, drop = FALSE]
-    wts <- weights(fit)
+    xmat <- stats::naresid(fit$na.action, xmat)
+    if (any(alias <- is.na(stats::coef(fit)))) xmat <- xmat[, !alias, drop = FALSE]
+    wts <- stats::weights(fit)
     if (is.null(wts)) wts <- 1
-    res <- residuals(fit)
+    res <- stats::residuals(fit)
     sw <- as.vector(res) * wts * xmat
   } else {
     sw <- sandwich::estfun(x = fit)
