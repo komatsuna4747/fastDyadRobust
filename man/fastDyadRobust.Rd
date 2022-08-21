@@ -9,14 +9,17 @@ fastDyadRobust(fit, dyad_cluster)
 \arguments{
 \item{fit}{The model object estimated by the \code{fixest} package.}
 
-\item{dyad_cluster}{A data frame or matrix that specifies how to dyadically cluster the standard errors.
+\item{dyad_cluster}{A data frame or matrix that specifies how to dyadically
+cluster the standard errors.
 The dimension of \code{dyad_cluster} must be D x 2,
-where D is the number of rows of the data frame that you have used to estimate \code{fit}.}
+where D is the number of rows of the data frame that you have used
+to estimate \code{fit}.}
 }
 \description{
 Computes dyad-robust standard errors via multiway decomposition,
 proposed by Aronow, Peter M., Cyrus Samii, and Valentina A. Assenova.
-"Cluster-robust variance estimation for dyadic data." Political Analysis 23.4 (2015): 564-577.
+"Cluster-robust variance estimation for dyadic data."
+Political Analysis 23.4 (2015): 564-577.
 
 This package is based on \code{dyadRobust}.
 }
