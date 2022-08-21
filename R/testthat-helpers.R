@@ -1,3 +1,24 @@
+# Create a test dataset
+make_test_data <- function(N = 20, repeated = FALSE, time_repeat = 3) {
+
+  df_test <- expand.grid(1:N, 1:N)
+  df_test <- df_test[df_test$Var1 < df_test$Var2, ]
+
+  if (repeated) {
+    df_test <-
+      rbind(df_test, df_test, df_test)
+
+    df_test$t <- rep(1:time_repeat, each = nrow(df_test)/time_repeat)
+  }
+
+  df_test$x <- rnorm(nrow(df_test))
+  df_test$e <- rnorm(nrow(df_test))
+  df_test$y <- df_test$x + df_test$e
+
+  return(df_test)
+}
+
+
 # From jbisbee1/dyadRobust
 # https://github.com/jbisbee1/dyadRobust
 dyad_meat_helper <- function(dyad.mat, iUp, sw) {
@@ -18,6 +39,8 @@ dyad_meat_helper <- function(dyad.mat, iUp, sw) {
 }
 
 
+# From jbisbee1/dyadRobust
+# https://github.com/jbisbee1/dyadRobust
 testDyadRobust <- function(fit, dat) {
   dyad.mat <- dat[c("dyadid", "egoid", "alterid")]
 
