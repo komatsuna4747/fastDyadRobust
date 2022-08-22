@@ -4,7 +4,11 @@
 \alias{fastDyadRobust}
 \title{Compute dyadic-robust standard errors}
 \usage{
-fastDyadRobust(fit, dyad_cluster)
+fastDyadRobust(
+  fit,
+  dyad_cluster,
+  n_core = RcppParallel::defaultNumThreads() - 1
+)
 }
 \arguments{
 \item{fit}{The model object estimated by the \code{fixest} package.}

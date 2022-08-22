@@ -16,7 +16,7 @@
 #' to estimate `fit`.
 #'
 #' @export
-fastDyadRobust <- function(fit, dyad_cluster) {
+fastDyadRobust <- function(fit, dyad_cluster, n_core = RcppParallel::defaultNumThreads() - 1) {
 
   # Check dyad_cluster
   if (ncol(dyad_cluster) != 2) {
@@ -37,6 +37,7 @@ fastDyadRobust <- function(fit, dyad_cluster) {
     paste(list_data$dyad_cluster[, 1], list_data$dyad_cluster[, 2], sep = "-")
 
   # Prepare meat and bread
+  RcppParallel::setThreadOptions(n_core)
   meat <- create_meat(est_fun, list_data$dyad_cluster, list_data$id)
   bread <- sandwich::bread(fit)
 

@@ -11,49 +11,22 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// sum_by_dyad_cluster
-arma::mat sum_by_dyad_cluster(arma::mat& sw, arma::uvec& cluster_bool);
-RcppExport SEXP _fastDyadRobust_sum_by_dyad_cluster(SEXP swSEXP, SEXP cluster_boolSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat& >::type sw(swSEXP);
-    Rcpp::traits::input_parameter< arma::uvec& >::type cluster_bool(cluster_boolSEXP);
-    rcpp_result_gen = Rcpp::wrap(sum_by_dyad_cluster(sw, cluster_bool));
-    return rcpp_result_gen;
-END_RCPP
-}
 // create_meat
-arma::mat create_meat(arma::mat& sw, arma::mat& pair, arma::vec& id);
+arma::mat create_meat(const arma::mat& sw, const arma::mat& pair, const arma::vec& id);
 RcppExport SEXP _fastDyadRobust_create_meat(SEXP swSEXP, SEXP pairSEXP, SEXP idSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat& >::type sw(swSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type pair(pairSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type id(idSEXP);
-    rcpp_result_gen = Rcpp::wrap(create_meat(sw, pair, id));
-    return rcpp_result_gen;
-END_RCPP
-}
-// create_meat_parallel
-arma::mat create_meat_parallel(const arma::mat& sw, const arma::mat& pair, const arma::vec& id);
-RcppExport SEXP _fastDyadRobust_create_meat_parallel(SEXP swSEXP, SEXP pairSEXP, SEXP idSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type sw(swSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type pair(pairSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type id(idSEXP);
-    rcpp_result_gen = Rcpp::wrap(create_meat_parallel(sw, pair, id));
+    rcpp_result_gen = Rcpp::wrap(create_meat(sw, pair, id));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_fastDyadRobust_sum_by_dyad_cluster", (DL_FUNC) &_fastDyadRobust_sum_by_dyad_cluster, 2},
     {"_fastDyadRobust_create_meat", (DL_FUNC) &_fastDyadRobust_create_meat, 3},
-    {"_fastDyadRobust_create_meat_parallel", (DL_FUNC) &_fastDyadRobust_create_meat_parallel, 3},
     {NULL, NULL, 0}
 };
 
