@@ -31,7 +31,7 @@ feolsDyadRobust <- function(fml, data, cluster, ...) {
   }
 
   # Compute dyad-robust standard errors
-  vcov_dyad_robust <- fastDyadRobust(reg, dyad_cluster)
+  vcov_dyad_robust <- vcovDyadRobust(reg, dyad_cluster)
 
   # Replace the old standard errors with new ones.
   reg <- summary(reg, vcov = vcov_dyad_robust)

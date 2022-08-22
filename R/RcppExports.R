@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 create_meat <- function(sw, pair, id) {
-    .Call(`_fastDyadRobust_create_meat`, sw, pair, id)
+    .Call('_fastDyadRobust_create_meat', PACKAGE = 'fastDyadRobust', sw, pair, id)
 }
 

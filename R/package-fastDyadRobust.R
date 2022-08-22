@@ -1,4 +1,4 @@
-#' @useDynLib fastDyadRobust, .registration = TRUE
+#' @useDynLib fastDyadRobust
 #' @importFrom Rcpp sourceCpp
 #' @importFrom RcppParallel RcppParallelLibs
 NULL

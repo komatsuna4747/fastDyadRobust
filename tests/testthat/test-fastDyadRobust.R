@@ -6,7 +6,7 @@ for (is_repeated in c(FALSE, TRUE)) {
   # Compute dyad-robust standard errors using fastDyadRobust
   dyad_cluster <- df_test[c("Var1", "Var2")]
   reg_dyad <- lm(y ~ x, df_test)
-  vcov_fastDyadRobust <- fastDyadRobust(reg_dyad, dyad_cluster)
+  vcov_fastDyadRobust <- vcovDyadRobust(reg_dyad, dyad_cluster)
 
   # Compute dyad-robust standard errors using dyadRobust
   # testDyadRobust() is in R/testthat-helpers.R
