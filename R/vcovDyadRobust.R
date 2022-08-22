@@ -41,11 +41,30 @@ vcovDyadRobust <- function(fit, dyad_cluster, nthreads = RcppParallel::defaultNu
   meat <- create_meat(est_fun, list_data$dyad_cluster, list_data$id)
   bread <- sandwich::bread(fit)
 
-  # Compute dyad-robust standard errors via multiway decomposition
-  dyad_robust_vcov <-
-    1 / nrow(est_fun) * (bread %*% meat %*% bread) -
-    sandwich::vcovCL(fit, type = "HC0", cluster = dyad_id, cadjust = FALSE) -
-    (length(list_data$id) - 2) * sandwich::vcovHC(fit, "HC0")
+  # Compute dyad-robust standard errors via multiway decomposition (Aronow, Samii, and Assenova, 2015).
+  # V_r = \sum_{i=1}^{N} V_{C, i} - V_D - (N - 2) * V_0
+
+  # V_{C, i}: the usual asymptotically consistent cluster-robust variance estimator
+  # (with no degressof-freedom adjustment) that clusters all dyads containing unit i
+  # and assumes all other observations to be independent
+
+  # V_D: the same cluster robust estimator but clustering all repeated dyad observations
+
+  # V_0: the usual asymptotically consistent heteroskedasticity robust (HC) variance estimator
+  # that assumes all observations (even within repeated dyad groupings) are independent.
+
+  # N: the number of nodes
+
+  # Step 1: Compute \sum_{i=1}^{N} V_{C, i}
+  dyad_robust_vcov <- 1 / nrow(est_fun) * (bread %*% meat %*% bread)
+
+  # Step 2: Compute V_D and subtract it from dyad_robust_vcov
+  dyad_robust_vcov <- dyad_robust_vcov -
+    sandwich::vcovCL(fit, cluster = dyad_id, type = "HC0", cadjust = FALSE)
+
+  # Step 3: Compute (N - 2) * V_0 and subtract it from dyad_robust_vcov
+  dyad_robust_vcov <- dyad_robust_vcov -
+    (length(list_data$id) - 2) * sandwich::vcovCL(fit, cluster = 1:nrow(est_fun), type = "HC0", cadjust = FALSE)
 
   return(dyad_robust_vcov)
 }
