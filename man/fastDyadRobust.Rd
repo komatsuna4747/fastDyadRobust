@@ -2,7 +2,7 @@
 % Please edit documentation in R/fastDyadRobust.R
 \name{fastDyadRobust}
 \alias{fastDyadRobust}
-\title{fastDyadRobust}
+\title{Compute dyadic-robust standard errors}
 \usage{
 fastDyadRobust(fit, dyad_cluster)
 }

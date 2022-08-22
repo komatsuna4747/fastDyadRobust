@@ -9,3 +9,7 @@ create_meat <- function(sw, pair, id) {
     .Call('_fastDyadRobust_create_meat', PACKAGE = 'fastDyadRobust', sw, pair, id)
 }
 
+create_meat_parallel <- function(sw, pair, id) {
+    .Call('_fastDyadRobust_create_meat_parallel', PACKAGE = 'fastDyadRobust', sw, pair, id)
+}
+

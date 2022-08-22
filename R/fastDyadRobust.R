@@ -1,4 +1,4 @@
-#' fastDyadRobust
+#' Compute dyadic-robust standard errors
 #'
 #' @description
 #' Computes dyad-robust standard errors via multiway decomposition,
@@ -7,9 +7,6 @@
 #' Political Analysis 23.4 (2015): 564-577.
 #'
 #' This package is based on \code{dyadRobust}.
-#'
-#' @useDynLib fastDyadRobust
-#' @importFrom Rcpp sourceCpp
 #'
 #' @param fit The model object estimated by the \code{fixest} package.
 #' @param dyad_cluster A data frame or matrix that specifies how to dyadically

@@ -3,4 +3,5 @@
 export(fastDyadRobust)
 export(feolsDyadRobust)
 importFrom(Rcpp,sourceCpp)
-useDynLib(fastDyadRobust)
+importFrom(RcppParallel,RcppParallelLibs)
+useDynLib(fastDyadRobust, .registration = TRUE)

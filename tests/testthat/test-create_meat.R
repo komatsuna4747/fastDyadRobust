@@ -30,3 +30,5 @@ actual <- create_meat(est_fun, dyad, id)
 test_that("create_meat correctly makes meat", {
   expect_equal(actual, expected, ignore_attr = TRUE)
 })
+
+create_meat_parallel(est_fun, dyad, id)
