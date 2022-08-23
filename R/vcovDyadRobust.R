@@ -1,20 +1,30 @@
 #' Compute dyadic-robust standard errors
 #'
 #' @description
-#' Computes dyad-robust standard errors via multiway decomposition,
+#' Computes dyadic-robust standard errors via multiway decomposition,
 #' proposed by Aronow, Peter M., Cyrus Samii, and Valentina A. Assenova.
 #' "Cluster-robust variance estimation for dyadic data."
 #' Political Analysis 23.4 (2015): 564-577.
 #'
-#' This package is based on \code{dyadRobust}.
+#' This function is based on `dyadRobust()` from the \code{dyadRobust} package.
+#' See \url{https://github.com/jbisbee1/dyadRobust} for details.
 #'
-#' @param fit The model object estimated by the \code{fixest} package.
+#' @param fit The model object. Can be of any class compatible with the \code{sandwich} package.
 #' @param dyad_cluster A data frame or matrix that specifies how to dyadically
 #' cluster the standard errors.
 #' The dimension of `dyad_cluster` must be D x 2,
 #' where D is the number of rows of the data frame that you have used
 #' to estimate `fit`.
 #' @param nthreads The number of threads. The default is to use all threads minus one.
+#'
+#' @return Returns dyadic-robust standard errors calculated via multiway decomposition.
+#'
+#' @examples
+#' \notrun{
+#' library(fixest)
+#' data()
+#' }
+#'
 #' @export
 vcovDyadRobust <- function(fit, dyad_cluster, nthreads = RcppParallel::defaultNumThreads() - 1) {
 
@@ -63,6 +73,7 @@ vcovDyadRobust <- function(fit, dyad_cluster, nthreads = RcppParallel::defaultNu
     sandwich::vcovCL(fit, cluster = dyad_id, type = "HC0", cadjust = FALSE)
 
   # Step 3: Compute (N - 2) * V_0 and subtract it from dyad_robust_vcov
+  # Here sandwich::vcovCL() is used because sandwich::vcovHC(fit, "HC0") doesn't yield correct vcov for a "fixest" object
   dyad_robust_vcov <- dyad_robust_vcov -
     (length(list_data$id) - 2) * sandwich::vcovCL(fit, cluster = 1:nrow(est_fun), type = "HC0", cadjust = FALSE)
 
