@@ -15,9 +15,10 @@ LinkingTo:
     RcppParallel
 Imports: 
     sandwich,
-    Rcpp,
-    fixest,
-    RcppParallel
+    Rcpp (>= 1.0.9),
+    fixest (>= 0.10.4),
+    RcppParallel (>= 5.1.5),
+    RcppArmadillo (>= 0.11.2)
 Suggests: 
     testthat (>= 3.0.0)
 SystemRequirements: GNU make

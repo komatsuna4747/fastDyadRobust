@@ -16,7 +16,7 @@ Tells how to dyadically cluster the standard-errors.
 Assume we want to perform dyadic clustering over var1 and var2 contained in the data.frame.
 Then you should provide \code{feolsDyadRobust()} with \code{cluster = c("var1", "var2")}.}
 
-\item{...}{Other parameters to be passed to \code{fixest::feols()}.}
+\item{...}{Other parameters to be passed to \code{fixest::feols()}. See \code{?fixest::feols} for details.}
 }
 \value{
 Returns a \code{fixest} object whose standard errors are computed by \code{vcovDyadRobust()}.

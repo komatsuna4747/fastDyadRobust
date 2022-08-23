@@ -8,7 +8,7 @@
 #' Tells how to dyadically cluster the standard-errors.
 #' Assume we want to perform dyadic clustering over var1 and var2 contained in the data.frame.
 #' Then you should provide `feolsDyadRobust()` with `cluster = c("var1", "var2")`.
-#' @param ... Other parameters to be passed to `fixest::feols()`.
+#' @param ... Other parameters to be passed to `fixest::feols()`. See `?fixest::feols` for details.
 #'
 #' @return Returns a `fixest` object whose standard errors are computed by `vcovDyadRobust()`.
 #'
