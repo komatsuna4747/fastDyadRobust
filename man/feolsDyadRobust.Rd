@@ -36,7 +36,7 @@ reg <-
     fml = dy ~ dx1 + dx2,
     data = df,
     cluster = c("src", "dst")
- )
+  )
 
 # Check the result
 summary(reg)
