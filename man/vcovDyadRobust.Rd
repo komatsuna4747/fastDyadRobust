@@ -11,7 +11,7 @@ vcovDyadRobust(
 )
 }
 \arguments{
-\item{fit}{The model object estimated by the \code{fixest} package.}
+\item{fit}{The model object. Can be of any class compatible with the \code{sandwich} package.}
 
 \item{dyad_cluster}{A data frame or matrix that specifies how to dyadically
 cluster the standard errors.
@@ -21,11 +21,22 @@ to estimate \code{fit}.}
 
 \item{nthreads}{The number of threads. The default is to use all threads minus one.}
 }
+\value{
+Returns dyadic-robust standard errors calculated via multiway decomposition.
+}
 \description{
-Computes dyad-robust standard errors via multiway decomposition,
+Computes dyadic-robust standard errors via multiway decomposition,
 proposed by Aronow, Peter M., Cyrus Samii, and Valentina A. Assenova.
 "Cluster-robust variance estimation for dyadic data."
 Political Analysis 23.4 (2015): 564-577.
 
-This package is based on \code{dyadRobust}.
+This function is based on \code{dyadRobust()} from the \code{dyadRobust} package.
+See \url{https://github.com/jbisbee1/dyadRobust} for details.
+}
+\examples{
+\notrun{
+library(fixest)
+data()
+}
+
 }
