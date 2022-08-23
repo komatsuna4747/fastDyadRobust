@@ -17,9 +17,9 @@ simulate_data <- function(n_node) {
   df <-
     dyad %>%
     dplyr::left_join(node, by = c("src" = "id")) %>%
-    dplyr::rename_at(c("x1", "x2", "a"), ~paste0(., "_src")) %>%
+    dplyr::rename_at(c("x1", "x2", "a"), ~ paste0(., "_src")) %>%
     dplyr::left_join(node, by = c("dst" = "id")) %>%
-    dplyr::rename_at(c("x1", "x2", "a"), ~paste0(., "_dst")) %>%
+    dplyr::rename_at(c("x1", "x2", "a"), ~ paste0(., "_dst")) %>%
     dplyr::mutate(
       dx1 = abs(x1_src - x1_dst),
       dx2 = abs(x2_src - x2_dst)

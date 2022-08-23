@@ -1,10 +1,10 @@
 Package: fastDyadRobust
-Title: What the Package Does (One Line, Title Case)
+Title: Fast Computation of Cluster-robust Standard Errors for Dyadic Data via Multiway Decomposition
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+    person("Shota", "Komatsu", , "first.last@example.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: The fastDyadRobust package computes cluster-robust standard errors for dyadic data as suggested by Aronow, Samii, and Assenova (2015). This package is built on dyadRobust, which also calculates dyadic-robust standard errors. With the aid of RcppArmadillo and RcppParallel, fastDyadRobust performs dyadic-robust standard error computation much faster than dyadRobust.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -15,9 +15,10 @@ LinkingTo:
     RcppParallel
 Imports: 
     sandwich,
-    Rcpp,
-    fixest,
-    RcppParallel
+    Rcpp (>= 1.0.9),
+    fixest (>= 0.10.4),
+    RcppParallel (>= 5.1.5),
+    RcppArmadillo (>= 0.11.2)
 Suggests: 
     testthat (>= 3.0.0)
 SystemRequirements: GNU make

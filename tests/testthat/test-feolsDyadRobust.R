@@ -15,6 +15,6 @@ test_that("Error handling correctly works", {
   expect_error(feolsDyadRobust(y ~ x | Var1 + Var2, data = df_test))
 
   # Inappropriate cluster argument
-  expect_error(feolsDyadRobust(y ~ x | Var1 + Var2, data = df_test, cluster = ~Var1 + Var2))
+  expect_error(feolsDyadRobust(y ~ x | Var1 + Var2, data = df_test, cluster = ~ Var1 + Var2))
   expect_error(feolsDyadRobust(y ~ x | Var1 + Var2, data = df_test, cluster = "Var1"))
 })
