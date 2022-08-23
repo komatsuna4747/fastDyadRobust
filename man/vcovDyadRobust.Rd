@@ -25,18 +25,32 @@ to estimate \code{fit}.}
 Returns dyadic-robust standard errors calculated via multiway decomposition.
 }
 \description{
-Computes dyadic-robust standard errors via multiway decomposition,
-proposed by Aronow, Peter M., Cyrus Samii, and Valentina A. Assenova.
-"Cluster-robust variance estimation for dyadic data."
-Political Analysis 23.4 (2015): 564-577.
+Computes dyadic-robust standard errors via multiway decomposition
+proposed by Aronow, Samii, and Assenova (2015).
 
 This function is based on \code{dyadRobust()} from the \code{dyadRobust} package.
 See \url{https://github.com/jbisbee1/dyadRobust} for details.
 }
+\details{
+For details of dyadic-robust standard errors see the original paper:
+
+Aronow, Peter M., Cyrus Samii, and Valentina A. Assenova.
+"Cluster-robust variance estimation for dyadic data."
+Political Analysis 23.4 (2015): 564-577.
+}
 \examples{
-\notrun{
-library(fixest)
-data()
+\dontrun{
+# Load a toy dataset
+df <- fastDyadRobust::toyData
+
+# Run regression
+reg <- lm(dy ~ dx1 + dx2, df)
+
+# Prepare data containing node ids
+df_dyad <- df[c("src", "dst")]
+
+# Get dyadic-robust standard errors
+fastDyadRobust::vcovDyadRobust(reg, df_dyad)
 }
 
 }

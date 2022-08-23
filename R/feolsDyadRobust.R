@@ -1,10 +1,35 @@
-#' Dyad-robust standard errors
+#' Dyadic-robust standard errors for `fixest::feols()`
+#'
+#' @description
+#' A wrapper function for `fixest::feols()` to compute dyadic-robust standard errors.
+#'
 #' @inheritParams fixest::feols
 #' @param cluster hoge
-#' Tells how to cluster the standard-errors.
+#' Tells how to dyadically cluster the standard-errors.
 #' Assume we want to perform dyadic clustering over var1 and var2 contained in the data.frame.
-#' Then \code{cluster = c("var1", "var2")}
+#' Then you should provide `feolsDyadRobust()` with `cluster = c("var1", "var2")`.
 #' @param ... Other parameters to be passed to `fixest::feols()`.
+#'
+#' @return Returns a `fixest` object whose standard errors are computed by `vcovDyadRobust()`.
+#'
+#' @examples
+#' \dontrun{
+#' # Load a toy dataset
+#' df <- fastDyadRobust::toyData
+#'
+#' # Run regression using fastDyadRobust::feolsDyadRobust()
+#' # You can pass other arguments to fixest::feols() such as `weidhts`.
+#' reg <-
+#'   fastDyadRobust::feolsDyadRobust(
+#'     fml = dy ~ dx1 + dx2,
+#'     data = df,
+#'     cluster = c("src", "dst")
+#'  )
+#'
+#' # Check the result
+#' summary(reg)
+#' }
+#'
 #' @export
 feolsDyadRobust <- function(fml, data, cluster, ...) {
   if (is.null(cluster)) {
