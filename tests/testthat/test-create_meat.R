@@ -1,16 +1,5 @@
 # Tests for cpp functions
-
-mat <- cbind(1:5, 6:10)
-group <- c(1, 1, 1, 2, 3)
-cluster_bool <- c(TRUE, TRUE, TRUE, FALSE, FALSE)
-expected <- aggregate(mat, by = list(cluster = group), FUN = sum)
-expected <- as.matrix(expected[, 2:nrow(expected)])
-
-actual <- sum_by_dyad_cluster(mat, cluster_bool)
-
-test_that("sum_by_dyad_cluster works", {
-  expect_equal(actual, expected, ignore_attr = TRUE)
-})
+set.seed(12345)
 
 # Check if meat is correctly made.
 dyad <- cbind(c(1, 1, 2), c(2, 3, 3))
@@ -21,7 +10,9 @@ expected <- matrix(0, nrow = 2, ncol = 2)
 
 for (i in id) {
   cluster_i <- dyad[, 1] == i | dyad[, 2] == i
-  uj <- sum_by_dyad_cluster(est_fun, cluster_i)
+  clusIndexUp <- cluster_i * (-99) + (1 - cluster_i) * 1:nrow(est_fun)
+  uj_dt <- stats::aggregate(est_fun, by = list(cluster = clusIndexUp), FUN = sum)
+  uj <- as.matrix(uj_dt[, 2:ncol(uj_dt)])
   expected <- expected + t(uj) %*% uj / nrow(est_fun)
 }
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/feolsDyadRobust.R
 \name{feolsDyadRobust}
 \alias{feolsDyadRobust}
-\title{Dyad-robust standard errors}
+\title{Dyadic-robust standard errors for \code{fixest::feols()}}
 \usage{
 feolsDyadRobust(fml, data, cluster, ...)
 }
@@ -12,12 +12,34 @@ feolsDyadRobust(fml, data, cluster, ...)
 \item{data}{A data.frame containing the necessary variables to run the model. The variables of the non-linear right hand side of the formula are identified with this \code{data.frame} names. Can also be a matrix.}
 
 \item{cluster}{hoge
-Tells how to cluster the standard-errors.
+Tells how to dyadically cluster the standard-errors.
 Assume we want to perform dyadic clustering over var1 and var2 contained in the data.frame.
-Then \code{cluster = c("var1", "var2")}}
+Then you should provide \code{feolsDyadRobust()} with \code{cluster = c("var1", "var2")}.}
 
 \item{...}{Other parameters to be passed to \code{fixest::feols()}.}
 }
+\value{
+Returns a \code{fixest} object whose standard errors are computed by \code{vcovDyadRobust()}.
+}
 \description{
-Dyad-robust standard errors
+A wrapper function for \code{fixest::feols()} to compute dyadic-robust standard errors.
+}
+\examples{
+\dontrun{
+# Load a toy dataset
+df <- fastDyadRobust::toyData
+
+# Run regression using fastDyadRobust::feolsDyadRobust()
+# You can pass other arguments to fixest::feols() such as `weidhts`.
+reg <-
+  fastDyadRobust::feolsDyadRobust(
+    fml = dy ~ dx1 + dx2,
+    data = df,
+    cluster = c("src", "dst")
+ )
+
+# Check the result
+summary(reg)
+}
+
 }
