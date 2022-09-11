@@ -53,7 +53,7 @@ vcovDyadRobust <- function(fit, dyad_cluster, nthreads = RcppParallel::defaultNu
     stop("The number of rows of dyad_cluster doesn't match the number of observations of fit.")
   }
 
-  # Extract and format ids for dyad-robust clustering
+  # Extract and format ids for clustering
   list_data <- clean_dyad_cluster(dyad_cluster)
 
   # Create dyad id
@@ -65,7 +65,7 @@ vcovDyadRobust <- function(fit, dyad_cluster, nthreads = RcppParallel::defaultNu
   meat <- create_meat(est_fun, list_data$dyad_cluster, list_data$id)
   bread <- sandwich::bread(fit)
 
-  # Compute dyad-robust standard errors via multiway decomposition (Aronow, Samii, and Assenova, 2015).
+  # Compute dyadic cluster-robust standard errors via multiway decomposition (Aronow, Samii, and Assenova, 2015).
   # V_r = \sum_{i=1}^{N} V_{C, i} - V_D - (N - 2) * V_0
 
   # V_{C, i}: the usual asymptotically consistent cluster-robust variance estimator

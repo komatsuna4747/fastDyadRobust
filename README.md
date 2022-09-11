@@ -6,7 +6,7 @@
 
 The `fastDyadRobust` package computes cluster-robust standard errors for dyadic data as suggested by Aronow, Samii, and Assenova (2015).
 
-This package is built on [`dyadRobust`](https://github.com/jbisbee1/dyadRobust), which also calculates dyadic-robust standard errors. With the aid of `RcppArmadillo` and `RcppParallel`, `fastDyadRobust` performs dyadic-robust standard error computation much faster than `dyadRobust` as shown below.
+This package is built on [`dyadRobust`](https://github.com/jbisbee1/dyadRobust), which also calculates dyadic cluster-robust standard errors. With the aid of `RcppArmadillo` and `RcppParallel`, `fastDyadRobust` performs dyadic cluster-robust standard error computation much faster than `dyadRobust` as shown below.
 
 ```
 # For a dataset with 100 nodes. 
@@ -16,7 +16,7 @@ This package is built on [`dyadRobust`](https://github.com/jbisbee1/dyadRobust),
 2 fastDyadRobust           10   0.108    1.000     0.263    0.055       0.00     0.000
 ```
 
-This package provides `fastDyadRobust::feolsDyadRobust()`, a wrapper function that estimates a linear model and computes dyadic-robust standard errors using `fixest::feols()`.
+This package provides `fastDyadRobust::feolsDyadRobust()`, a wrapper function that estimates a linear model and computes dyadic cluster-robust standard errors using `fixest::feols()`.
 
 ```r
 library(fastDyadRobust)
@@ -30,7 +30,7 @@ reg$se
 (Intercept)         dx1         dx2 
  0.20751883  0.09215473  0.07933073 
 attr(,"type")
-[1] "Dyadic-robust"
+[1] "Dyadic cluster-robust"
 ```
 
 
