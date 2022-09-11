@@ -55,12 +55,12 @@ feolsDyadRobust <- function(fml, data, cluster, ...) {
     dyad_cluster <- dyad_cluster[reg$obs_selection$obsRemoved, , drop = FALSE]
   }
 
-  # Compute dyad-robust standard errors
+  # Compute dyadic cluster-robust standard errors
   vcov_dyad_robust <- vcovDyadRobust(reg, dyad_cluster)
 
   # Replace the old standard errors with new ones.
   reg <- summary(reg, vcov = vcov_dyad_robust)
-  attr(reg$se, "type") <- "Dyadic-robust"
+  attr(reg$se, "type") <- "Dyadic cluster-robust"
 
   return(reg)
 }
